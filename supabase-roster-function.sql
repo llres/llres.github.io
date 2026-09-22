@@ -1,5 +1,6 @@
 ﻿-- Run this once in Supabase SQL Editor after supabase-schema.sql succeeds.
-drop function if exists public.get_class_roster(text);`r`ncreate or replace function public.get_class_roster(p_password text, p_student_id text default '')
+drop function if exists public.get_class_roster(text);
+create or replace function public.get_class_roster(p_password text, p_student_id text default '')
 returns table(student_id text, name text, gender text, phone text, dorm text, can_edit boolean)
 language sql
 security definer
@@ -26,3 +27,4 @@ end;
 $$;
 revoke all on function public.update_roster_contact(text,text,text,text,text) from public;
 grant execute on function public.update_roster_contact(text,text,text,text,text) to anon, authenticated;
+
