@@ -41,21 +41,16 @@
     @media(pointer:coarse){.star-field i{width:3px;height:3px;box-shadow:0 0 8px 1px #ffd6ef;animation-duration:8s}.hero{animation-name:heroGradient;animation-duration:14s}.hero:before{animation:mobileGlow 8s ease-in-out infinite alternate}.meteor-layer{opacity:1.2}@keyframes mobileGlow{to{opacity:.65;transform:translateX(8%) scale(1.04)}}}
     @media(max-width:600px){.star-field{background:radial-gradient(circle at 72% 18%,rgba(171,121,255,.16),transparent 30%),radial-gradient(circle at 18% 70%,rgba(69,214,255,.1),transparent 28%)}.star-field i{width:3px;height:3px}.star-field .comet{width:72px;height:2px}.hero{background-color:rgba(37,37,82,.72)}}
   </style>
-  <style id="landing-theme">
-    body.landing-home #resources,body.landing-home .announce,body.landing-home #about{display:none}
-    body.landing-home main{min-height:calc(100vh - 150px);display:grid;align-content:center}
-    body.landing-home .hero{margin-top:0}
-  </style>
 </head>
-<body class="landing-home">
+<body>
   <div class="star-field" id="starField" aria-hidden="true"><canvas class="meteor-layer" id="meteorLayer"></canvas></div>
   <header class="wrap topbar">
     <a class="brand" href="#top"><span class="brand-mark">✦</span><span>落落资源站<small>LLORES · RESOURCE HUB</small></span></a>
-    <nav class="nav"><a href="resources.html">资源库</a><a href="class-tool.html" class="button ghost">班级工具</a><a href="resources.html" class="button ghost">开始探索</a></nav>
+    <nav class="nav"><a href="index.html">首站</a><a href="#resources">资源库</a><a href="class-tool.html" class="button ghost">班级工具</a></nav>
   </header>
   <main id="top" class="wrap">
     <section class="hero">
-      <div><span class="eyebrow"><i class="dot"></i> WELCOME TO LLORES</span><h1>欢迎来到落落，<br><em>从这里开始探索。</em></h1><p>一个收集实用资源、班级工具和个人内容的轻量站点。先从首站出发，再进入你需要的区域。</p><div class="hero-actions"><a class="button primary" href="resources.html">✦ 进入资源库</a><a class="button ghost" href="class-tool.html">打开班级工具</a></div></div>
+      <div><span class="eyebrow"><i class="dot"></i> RESOURCE HUB</span><h1>好用的资源，<br><em>一站就能找到。</em></h1><p>按类型整理软件、文档与实用工具，搜索或筛选后即可查看资源信息。</p><div class="hero-actions"><a class="button primary" href="#resources">✦ 开始探索</a><a class="button ghost" href="index.html">返回首站</a></div></div>
       <aside class="profile"><div class="avatar"><img src="/assets/avatar.jpg" alt="资源站头像"></div><h2>✦ 星屑资源屋</h2><p>轻轻点击，穿过这片小小的数字星空，发现实用又有趣的内容。</p><div class="mini-stats"><div><b id="total">0</b><span>已收录</span></div><div><b>3</b><span>资源分类</span></div><div><b>∞</b><span>持续更新</span></div></div></aside>
     </section>
     <div class="announce"><b>✦ 小公告</b><span>资源屋正在持续补充中，下载前请先查看版本、大小和使用说明。</span><button id="hideBar" aria-label="关闭公告">×</button></div>
