@@ -1,83 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>落落资源站</title>
-<style>
-:root{--bg:#0b1020;--card:#11182b;--card2:#151f36;--text:#eef3ff;--muted:#91a0bb;--line:#26334f;--accent:#6ea8ff;--accent2:#8c7cff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#182a50 0,#0b1020 38%,#080c17 100%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
-.container{width:min(1100px,92%);margin:auto}.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:22px;font-weight:800}.logo span{color:var(--accent)}
-.nav a{color:var(--muted);text-decoration:none;margin-left:24px}.nav a:hover{color:#fff}
-.hero{padding:72px 0 45px}.tag{display:inline-block;padding:7px 12px;border:1px solid #31456d;border-radius:999px;color:#bcd1ff;background:#101a30;font-size:13px}.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.05;margin:18px 0 12px}.hero h1 span{background:linear-gradient(90deg,#7db2ff,#a594ff);-webkit-background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:17px;max-width:680px;line-height:1.8}
-.search{margin-top:28px;display:flex;gap:10px}.search input{flex:1;background:#0e1628;border:1px solid var(--line);border-radius:14px;padding:15px 18px;color:#fff;outline:none}.search input:focus{border-color:var(--accent)}button{border:0;border-radius:12px;padding:0 22px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-weight:700;cursor:pointer}
-.section{padding:28px 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}.section h2{margin:0;font-size:25px}.section-head span{color:var(--muted);font-size:14px}
-.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}.filter{padding:9px 14px;background:#10182b;border:1px solid var(--line);color:var(--muted);border-radius:999px;cursor:pointer}.filter.active{color:#fff;border-color:#557ec7;background:#162544}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(180deg,#121b30,#0f1627);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.2s}.card:hover{transform:translateY(-3px);border-color:#4568a3}.icon{font-size:30px}.card h3{margin:14px 0 8px}.desc{color:var(--muted);font-size:14px;line-height:1.7;min-height:47px}.meta{display:flex;gap:10px;color:#8291ac;font-size:12px;margin:15px 0}.download{display:block;text-align:center;text-decoration:none;color:#fff;background:#182642;border:1px solid #30476f;padding:11px;border-radius:11px}.download:hover{background:#22365d}
-.empty{text-align:center;padding:40px;color:var(--muted);display:none}.footer{border-top:1px solid var(--line);margin-top:55px;padding:28px 0 40px;color:#74819a;font-size:13px}
-@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.nav a{display:none}.hero{padding-top:45px}.search{flex-direction:column}.search button{height:48px}.grid{grid-template-columns:1fr}.hero h1{font-size:42px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b16">
+  <title>落落资源站 · LLORES</title>
+  <style>
+    :root{--bg:#090b16;--panel:rgba(17,20,38,.75);--line:rgba(183,198,255,.14);--text:#f4f6ff;--muted:#9aa3bf;--cyan:#73e6ff;--purple:#a77bff;--pink:#ff79c6;--shadow:0 20px 60px rgba(0,0,0,.34)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--text);font-family:"Microsoft YaHei",system-ui,-apple-system,sans-serif;overflow-x:hidden}
+    body:before,body:after{content:"";position:fixed;z-index:-2;border-radius:50%;filter:blur(10px);pointer-events:none}body:before{width:560px;height:560px;left:-230px;top:-140px;background:radial-gradient(circle,rgba(65,124,255,.31),transparent 68%)}body:after{width:580px;height:580px;right:-230px;top:130px;background:radial-gradient(circle,rgba(183,72,255,.24),transparent 66%)}
+    a{color:inherit}.wrap{width:min(1150px,92%);margin:auto}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;letter-spacing:.3px}.brand-mark{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));box-shadow:0 7px 25px rgba(107,136,255,.36);color:#101325}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:1.8px;margin-top:2px}.nav{display:flex;gap:8px;align-items:center}.nav a{text-decoration:none;color:var(--muted);font-size:14px;padding:8px 11px;border-radius:10px}.nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+    .hero{display:grid;grid-template-columns:1.35fr .65fr;gap:26px;padding:54px 0 35px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(115,230,255,.28);background:rgba(51,174,213,.08);border-radius:99px;font-size:12px;color:#c4f7ff}.dot{width:7px;height:7px;background:#67f4a3;border-radius:50%;box-shadow:0 0 12px #67f4a3}.hero h1{font-size:clamp(43px,7vw,78px);line-height:.99;letter-spacing:-3px;margin:17px 0}.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--cyan),#aab9ff 45%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:610px;color:var(--muted);line-height:1.85;font-size:16px;margin:0}.hero-actions{display:flex;gap:12px;margin-top:25px;flex-wrap:wrap}.button{border:1px solid transparent;text-decoration:none;border-radius:13px;padding:12px 17px;font-weight:750;font-size:14px;cursor:pointer;transition:.22s;font-family:inherit}.button.primary{color:#111528;background:linear-gradient(115deg,var(--cyan),#a69cff);box-shadow:0 10px 26px rgba(116,156,255,.25)}.button.primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(116,156,255,.38)}.button.ghost{background:rgba(255,255,255,.045);color:#e9ecff;border-color:var(--line)}.button.ghost:hover{background:rgba(255,255,255,.09)}
+    .profile{position:relative;padding:27px 22px 22px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(145deg,rgba(32,37,69,.78),rgba(12,15,29,.7));box-shadow:var(--shadow);overflow:hidden}.profile:before{content:"";position:absolute;width:200px;height:200px;right:-80px;top:-80px;border-radius:50%;background:radial-gradient(circle,rgba(115,230,255,.25),transparent 67%)}.avatar{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:29px;background:linear-gradient(145deg,#5ee7ff,#826eff 55%,#ed7fd1);box-shadow:0 8px 25px rgba(96,130,255,.4);position:relative}.profile h2{font-size:18px;margin:14px 0 5px}.profile p{font-size:13px;color:var(--muted);line-height:1.65;margin:0}.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:20px;padding-top:16px}.mini-stats b{font-size:18px;display:block}.mini-stats span{font-size:11px;color:var(--muted)}
+    .announce{display:flex;align-items:center;gap:12px;margin:14px 0 30px;padding:12px 14px;border:1px solid rgba(255,184,94,.22);background:linear-gradient(90deg,rgba(255,173,79,.12),rgba(255,255,255,.025));border-radius:15px;color:#dce3ff;font-size:13px}.announce b{color:#ffd49a;white-space:nowrap}.announce button{margin-left:auto;color:#aeb9d8;background:transparent;border:0;cursor:pointer;font-size:18px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:36px 0 17px}.section-head h2{font-size:24px;margin:0}.section-head p{margin:5px 0 0;font-size:13px;color:var(--muted)}.search{position:relative;min-width:min(315px,100%)}.search input{width:100%;border:1px solid var(--line);outline:0;border-radius:13px;background:rgba(12,15,30,.7);color:#fff;padding:12px 14px 12px 38px;font:14px inherit}.search input:focus{border-color:rgba(115,230,255,.55);box-shadow:0 0 0 3px rgba(115,230,255,.08)}.search i{position:absolute;left:14px;top:11px;font-style:normal;color:var(--muted)}
+    .filters{display:flex;gap:9px;flex-wrap:wrap}.filter{font:13px inherit;color:#b6bfda;padding:9px 13px;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:99px;cursor:pointer;transition:.18s}.filter:hover,.filter.active{background:linear-gradient(100deg,rgba(93,221,255,.18),rgba(173,112,255,.2));border-color:rgba(137,200,255,.44);color:#fff}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:17px}.card{position:relative;overflow:hidden;padding:17px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(27,32,59,.8),rgba(12,15,28,.84));transition:.22s;min-height:260px;display:flex;flex-direction:column}.card:hover{transform:translateY(-5px);border-color:rgba(126,200,255,.45);box-shadow:0 16px 35px rgba(0,0,0,.22)}.cover{height:88px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;padding:15px;font-size:35px;margin-bottom:15px;overflow:hidden}.cover small{align-self:flex-start;padding:5px 7px;border-radius:8px;background:rgba(10,12,25,.22);font-size:10px;font-weight:700;letter-spacing:.5px}.cover.mc{background:linear-gradient(125deg,#267c6c,#70d9c2)}.cover.mod{background:linear-gradient(125deg,#513eac,#bd90ff)}.cover.app{background:linear-gradient(125deg,#2365a7,#76c8ff)}.cover.doc{background:linear-gradient(125deg,#a04c71,#ff9cc0)}.cover.other{background:linear-gradient(125deg,#a66525,#ffc66f)}.card h3{font-size:16px;margin:0 0 8px}.card .desc{color:var(--muted);font-size:12.5px;line-height:1.65;margin:0}.tags{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.tags span{font-size:10px;color:#c6d3f5;background:rgba(255,255,255,.06);padding:4px 7px;border-radius:6px}.card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:#8c98b7}.download{border:0;color:#0d1224;cursor:pointer;font:700 12px inherit;background:linear-gradient(100deg,#8eefff,#b497ff);padding:8px 10px;border-radius:9px}.empty{display:none;padding:45px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:18px;margin-top:17px}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:55px 0}.about-card{padding:22px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.035)}.about-card h2{margin:0 0 10px;font-size:21px}.about-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.8}.contact-links{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}.contact{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#d7ddf5;border-radius:10px;padding:8px 10px;font:13px inherit;cursor:pointer}.contact:hover{border-color:rgba(115,230,255,.45)}.footer{border-top:1px solid var(--line);padding:24px 0 37px;color:#76819f;font-size:12px;display:flex;justify-content:space-between;gap:15px}.footer b{color:#bdc7e8}
+    dialog{border:0;padding:0;background:transparent;color:var(--text);width:min(390px,90vw)}dialog::backdrop{background:rgba(4,5,13,.72);backdrop-filter:blur(5px)}.modal{padding:25px;border:1px solid rgba(160,180,255,.22);border-radius:23px;background:linear-gradient(145deg,#202647,#101322);box-shadow:var(--shadow)}.modal .x{float:right;color:#9aa6c9;background:transparent;border:0;font-size:19px;cursor:pointer}.modal h2{margin:3px 0 10px;font-size:21px}.modal p{color:#b4bdd8;font-size:14px;line-height:1.75}.modal .button{margin-top:8px;width:100%}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:10px 14px;border-radius:12px;background:#edf4ff;color:#141a31;font-size:13px;font-weight:700;transition:.25s}.toast.show{transform:translate(-50%,0);opacity:1}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:32px}.profile{max-width:510px}.grid{grid-template-columns:1fr 1fr}.section-head{align-items:start;flex-direction:column}.search{width:100%}.about{grid-template-columns:1fr}.nav a:not(:last-child){display:none}}@media(max-width:520px){.topbar{height:65px}.brand{font-size:14px}.hero h1{letter-spacing:-2px}.grid{grid-template-columns:1fr}.footer{flex-direction:column}.announce{align-items:flex-start}.announce button{margin-top:-3px}.card{min-height:235px}}
+  </style>
 </head>
 <body>
-<header class="container nav">
-  <div class="logo">落落<span>资源站</span></div>
-  <nav><a href="#resources">资源</a><a href="#about">关于</a></nav>
-</header>
-
-<main>
-<section class="container hero">
-  <span class="tag">FREE · PERSONAL RESOURCE HUB</span>
-  <h1>你的资源，<br><span>简单地分享。</span></h1>
-  <p>一个简洁、免费的个人资源下载站。Minecraft、软件、文档和其他文件都可以放在这里。</p>
-  <div class="search">
-    <input id="search" placeholder="搜索资源，例如：Minecraft、整合包、软件……">
-    <button onclick="doSearch()">搜索</button>
-  </div>
-</section>
-
-<section class="container section" id="resources">
-  <div class="section-head"><h2>资源库</h2><span id="count"></span></div>
-  <div class="filters">
-    <div class="filter active" data-cat="全部">全部</div>
-    <div class="filter" data-cat="Minecraft">Minecraft</div>
-    <div class="filter" data-cat="软件">软件</div>
-    <div class="filter" data-cat="文档">文档</div>
-    <div class="filter" data-cat="其他">其他</div>
-  </div>
-  <div class="grid" id="grid"></div>
-  <div class="empty" id="empty">没有找到相关资源</div>
-</section>
-
-<section class="container section" id="about">
-  <div class="card">
-    <h2>关于本站</h2>
-    <p class="desc">这是一个个人资源站模板。你可以把下载链接替换成自己的文件地址，再免费部署到 GitHub Pages、Cloudflare Pages 等静态托管平台。</p>
-  </div>
-</section>
-</main>
-
-<footer class="container footer">© 2026 落落资源站 · Personal Resource Hub</footer>
-
-<script>
-const resources=[
- {name:"Minecraft 1.20.1 乌托邦整合包",cat:"Minecraft",icon:"🎮",desc:"这里填写整合包简介、版本和安装说明。",size:"待填写",version:"1.20.1",url:"#"},
- {name:"Minecraft Mod 示例",cat:"Minecraft",icon:"🧩",desc:"这里填写 Mod 的功能介绍和适用版本。",size:"待填写",version:"1.20.1",url:"#"},
- {name:"常用工具软件",cat:"软件",icon:"🛠️",desc:"这里填写软件名称、用途和使用说明。",size:"待填写",version:"最新版",url:"#"},
- {name:"个人文档",cat:"文档",icon:"📄",desc:"这里可以放课程资料、说明文档等。",size:"待填写",version:"PDF",url:"#"},
- {name:"图片资源包",cat:"其他",icon:"🖼️",desc:"这里填写图片素材或其他资源说明。",size:"待填写",version:"资源包",url:"#"},
- {name:"新资源示例",cat:"其他",icon:"📦",desc:"复制这个对象即可继续添加资源。",size:"待填写",version:"v1.0",url:"#"}
-];
-let current="全部",keyword="";
-function render(){
- const list=resources.filter(r=>(current==="全部"||r.cat===current)&&(`${r.name} ${r.desc} ${r.cat}`.toLowerCase().includes(keyword.toLowerCase())));
- document.getElementById("count").textContent=`共 ${list.length} 个资源`;
- document.getElementById("empty").style.display=list.length?"none":"block";
- document.getElementById("grid").innerHTML=list.map(r=>`<article class="card"><div class="icon">${r.icon}</div><h3>${r.name}</h3><div class="desc">${r.desc}</div><div class="meta"><span>${r.cat}</span><span>${r.version}</span><span>${r.size}</span></div><a class="download" href="${r.url}" target="_blank" rel="noopener">⬇ 立即下载</a></article>`).join("");
-}
-function doSearch(){keyword=document.getElementById("search").value.trim();render()}
-document.getElementById("search").addEventListener("keydown",e=>{if(e.key==="Enter")doSearch()});
-document.querySelectorAll(".filter").forEach(el=>el.onclick=()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));el.classList.add("active");current=el.dataset.cat;render()});
-render();
-</script>
+  <header class="wrap topbar">
+    <a class="brand" href="#top"><span class="brand-mark">✦</span><span>落落资源站<small>LLORES · PERSONAL VAULT</small></span></a>
+    <nav class="nav"><a href="#resources">资源库</a><a href="#about">关于</a><a href="#resources" class="button ghost">开始探索</a></nav>
+  </header>
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div><span class="eyebrow"><i class="dot"></i> FREE PERSONAL RESOURCE HUB</span><h1>把喜欢的资源，<br><em>留在这里。</em></h1><p>落落的个人资源收藏站。Minecraft、软件、文档、图片和一些不想弄丢的好东西，慢慢整理，慢慢分享。</p><div class="hero-actions"><a class="button primary" href="#resources">✦ 进入资源库</a><button class="button ghost" id="openNotice">查看公告</button></div></div>
+      <aside class="profile"><div class="avatar">落</div><h2>你好，我是落落。</h2><p>这里不追求堆满资源，只留下自己觉得值得保存、值得分享的东西。</p><div class="mini-stats"><div><b id="total">0</b><span>已收录</span></div><div><b>5</b><span>资源分类</span></div><div><b>2026</b><span>开始整理</span></div></div></aside>
+    </section>
+    <div class="announce"><b>✦ 站内公告</b><span>网站正在慢慢装修中，资源会持续补充。下载前请先看资源说明。</span><button id="hideBar" aria-label="关闭公告">×</button></div>
+    <section id="resources"><div class="section-head"><div><h2>资源收藏柜</h2><p id="count">正在加载资源…</p></div><label class="search"><i>⌕</i><input id="search" placeholder="搜一搜：整合包、文档、工具…"></label></div><div class="filters" id="filters"><button class="filter active" data-cat="全部">全部</button><button class="filter" data-cat="Minecraft">Minecraft</button><button class="filter" data-cat="软件">软件</button><button class="filter" data-cat="文档">文档</button><button class="filter" data-cat="其他">其他</button></div><div class="grid" id="grid"></div><div class="empty" id="empty">没有找到这份资源。换个关键词试试？</div></section>
+    <section class="about" id="about"><div class="about-card"><h2>不是冰冷的下载站</h2><p>这是一个持续生长的小型个人资源库。每一份资源都会慢慢补上版本、大小、更新时间和使用说明；如果链接失效，也欢迎提醒我。</p></div><div class="about-card"><h2>找到我</h2><p>联系入口暂时保留。以后填入你的邮箱、QQ、QQ群或其他公开联系方式即可。</p><div class="contact-links"><button class="contact" data-copy="contact@example.com">✉ 邮箱</button><button class="contact" data-copy="暂未设置 QQ">◉ QQ</button><button class="contact" data-copy="暂未设置 微信">◌ 微信</button></div></div></section>
+  </main>
+  <footer class="wrap footer"><span>© 2026 <b>落落资源站</b> · Made for the things worth keeping.</span><span>免费静态部署 · GitHub Pages</span></footer>
+  <dialog id="notice"><div class="modal"><button class="x" id="closeNotice">×</button><h2>欢迎来到落落资源站 ✦</h2><p>这里的资源仍在整理中。请只下载你有权使用的内容；如发现失效链接，后续可以在站内写明反馈方式。</p><button class="button primary" id="noticeOk">我知道了</button></div></dialog><div class="toast" id="toast"></div>
+  <script>
+    // 新增资源：复制一行，填写 name、cat、desc、size、version、updated、tags 与 url。
+    const resources=[
+      {name:"Minecraft 1.20.1 乌托邦整合包",cat:"Minecraft",kind:"mc",icon:"⛏",label:"整合包",desc:"适合单人慢慢玩的冒险生存整合包，安装前请阅读对应版本说明。",size:"待填写",version:"1.20.1",updated:"2026-09-22",tags:["Forge","冒险","生存"],url:"#"},
+      {name:"实用 Mod 小合集",cat:"Minecraft",kind:"mod",icon:"🧩",label:"MOD",desc:"收集一些让游戏体验更舒服的小型实用模组，按版本自行选择。",size:"待填写",version:"1.20.1",updated:"2026-09-22",tags:["Fabric","实用","轻量"],url:"#"},
+      {name:"常用工具软件",cat:"软件",kind:"app",icon:"⌘",label:"工具",desc:"日常整理文件、制作内容时会用到的小工具，后续补充使用说明。",size:"待填写",version:"最新版",updated:"2026-09-22",tags:["Windows","效率"],url:"#"},
+      {name:"个人文档与笔记",cat:"文档",kind:"doc",icon:"▤",label:"PDF",desc:"课程资料、教程与个人笔记。请从资源详情或说明中确认适用范围。",size:"待填写",version:"PDF",updated:"2026-09-22",tags:["学习","笔记"],url:"#"},
+      {name:"图片素材小包",cat:"其他",kind:"other",icon:"✺",label:"素材",desc:"一些可用于个人创作的图片与灵感素材，使用前留意具体授权说明。",size:"待填写",version:"v1.0",updated:"2026-09-22",tags:["图片","素材"],url:"#"}
+    ];
+    const grid=document.querySelector('#grid'),empty=document.querySelector('#empty'),count=document.querySelector('#count'),search=document.querySelector('#search');let category='全部';
+    function render(){const word=search.value.trim().toLowerCase();const list=resources.filter(r=>(category==='全部'||r.cat===category)&&[r.name,r.desc,r.cat,...r.tags].join(' ').toLowerCase().includes(word));document.querySelector('#total').textContent=resources.length;count.textContent=`目前收藏了 ${list.length} 份资源 · 不定期更新`;empty.style.display=list.length?'none':'block';grid.innerHTML=list.map(r=>`<article class="card"><div class="cover ${r.kind}"><span>${r.icon}</span><small>${r.label}</small></div><h3>${r.name}</h3><p class="desc">${r.desc}</p><div class="tags">${r.tags.map(t=>`<span># ${t}</span>`).join('')}</div><div class="card-bottom"><span>${r.version} · ${r.size}</span><button class="download" data-url="${r.url}">获取资源 ↗</button></div></article>`).join('')}
+    document.querySelector('#filters').addEventListener('click',e=>{if(!e.target.matches('.filter'))return;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));e.target.classList.add('active');category=e.target.dataset.cat;render()});search.addEventListener('input',render);grid.addEventListener('click',e=>{if(!e.target.matches('.download'))return;const url=e.target.dataset.url;if(url==='#'){showToast('下载链接还在整理中，稍后再来看看吧。')}else window.open(url,'_blank','noopener')});
+    const notice=document.querySelector('#notice');document.querySelector('#openNotice').onclick=()=>notice.showModal();document.querySelector('#closeNotice').onclick=document.querySelector('#noticeOk').onclick=()=>notice.close();document.querySelector('#hideBar').onclick=e=>e.currentTarget.parentElement.style.display='none';document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard?.writeText(b.dataset.copy);showToast(`已复制：${b.dataset.copy}`)});function showToast(message){const t=document.querySelector('#toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}render();
+  </script>
 </body>
 </html>
