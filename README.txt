@@ -6,7 +6,7 @@
 - assets/avatar.jpg：网站头像和浏览器标签页图标。
 - profile.html：落的个人介绍页，首页头像和名字可进入。
 - tools.html：班级工具导航页，后续可继续添加其他工具。
-- class-tool.html：低空2601 班级花名册页面，由工具导航页进入。
+- class-tool.html：低空2601 班级花名册页面，只能由工具导航页进入。
 - supabase-schema.sql：Supabase 数据表、权限函数和班级名单初始化脚本。
 - supabase-roster-function.sql：花名册查询及管理员表格管理函数。
 - supabase-roster-data.sql：从最新学生信息表提取的花名册字段更新脚本，只导入学号、姓名、性别、手机号和寝室号；寝室号统一为 `楼栋-房间号` 格式，例如 `7-502`。

@@ -72,6 +72,10 @@
     .hero h1,.profile h2,.card h3{letter-spacing:-.6px}
     @media(max-width:600px){.hero,.profile,.landing-link,.card{backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:blur(12px) saturate(120%)}}
   </style>
+  <style id="background-fix">
+    html,body{min-height:100%;background-repeat:no-repeat;background-size:cover;background-attachment:fixed}
+    body{background-color:#090b1d}
+  </style>
 </head>
 <body class="landing-home">
   <div class="star-field" id="starField" aria-hidden="true"><canvas class="meteor-layer" id="meteorLayer"></canvas></div>
