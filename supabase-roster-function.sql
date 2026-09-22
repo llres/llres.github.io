@@ -36,3 +36,6 @@ revoke all on function public.admin_delete_student(text,text,text) from public;
 grant execute on function public.get_class_roster(text,text) to anon,authenticated;
 grant execute on function public.admin_upsert_student(text,text,text,text,text,text,text,text) to anon,authenticated;
 grant execute on function public.admin_delete_student(text,text,text) to anon,authenticated;
+
+-- Refresh PostgREST's function cache so the web page can call the new RPCs immediately.
+notify pgrst, 'reload schema';
