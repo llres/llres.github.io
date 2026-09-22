@@ -4,6 +4,8 @@
 - index.html：网站完整页面，直接双击即可预览。
 - assets/wechat-qr.png、assets/qq-qr.png：联系方式二维码。
 - assets/avatar.jpg：网站头像和浏览器标签页图标。
+- class-tool.html：低空2601 班级信息自助工具。
+- supabase-schema.sql：Supabase 数据表、权限函数和班级名单初始化脚本。
 
 添加资源：
 1. 用记事本或 VS Code 打开 index.html。
@@ -20,3 +22,11 @@
 GitHub 用户名为 llres 时，创建公开仓库 llres.github.io，将本文件和 index.html 上传到仓库根目录；在仓库 Settings > Pages 选择 master 分支和 /(root)。
 
 注意：GitHub Pages 只放网页、图片和小型静态资源。大型整合包、安装包请使用合规的外部文件托管，再把链接写入 url。
+
+班级工具首次配置：
+1. 打开 Supabase 项目后台的 SQL Editor。
+2. 打开仓库中的 supabase-schema.sql，将第一段插入语句里的“请在执行前替换为你的管理密码”改成你要发给同学的密码，然后执行整个脚本。
+3. 部署后从首页点击“班级工具”，或直接打开 /class-tool.html。
+4. 同学使用自己的学号和统一管理密码进入，填写内容会保存到 Supabase，并可在不同设备同步。
+
+安全说明：网页中只使用 Supabase publishable key；管理密码以哈希形式保存在数据库中，不写入网页源码。请不要把数据库密码或 service_role key 放进仓库。
