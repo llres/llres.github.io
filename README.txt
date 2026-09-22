@@ -3,6 +3,7 @@
 文件放置：
 - index.html：网站完整页面，直接双击即可预览。
 - assets/wechat-qr.png、assets/qq-qr.png：联系方式二维码。
+- assets/avatar.jpg：网站头像和浏览器标签页图标。
 
 添加资源：
 1. 用记事本或 VS Code 打开 index.html。
