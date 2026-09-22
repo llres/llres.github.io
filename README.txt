@@ -7,6 +7,7 @@
 - class-tool.html：低空2601 班级花名册查询页面。
 - supabase-schema.sql：Supabase 数据表、权限函数和班级名单初始化脚本。
 - supabase-roster-function.sql：花名册查询及管理员表格管理函数。
+- supabase-roster-data.sql：从最新学生信息表提取的花名册字段更新脚本，只导入学号、姓名、性别、手机号和寝室号。
 - supabase-roster-update.sql：将已初始化的旧学号更新为正式学号的迁移脚本。`r`n- supabase-password-update.sql：使用扩展 schema 正确更新班级管理密码。`r`n- supabase-password-update.sql：使用扩展 schema 正确更新班级管理密码。
 
 添加资源：
@@ -39,5 +40,10 @@ GitHub 用户名为 llres 时，创建公开仓库 llres.github.io，将本文�
 正式学号更新：
 - 新上传的 2026 级注册学籍表对应正式学号为 `26050001` 至 `26050042`。
 - 如果已经执行过旧版初始化脚本，请在 SQL Editor 额外执行 `supabase-roster-update.sql`；以后登录使用正式学号。
+
+最新花名册数据导入：
+- 如需将最新学生信息表同步到后端，请在执行花名册函数脚本后执行 `supabase-roster-data.sql`。
+- 该脚本只写入花名册页面需要的学号、姓名、性别、手机号和寝室号，不会导入身份证号、政治面貌、民族、专业、班级或备注。
+- 表格中标注“待确认”的第二个手机号不会导入，只保留已确认的号码。
 
 安全说明：网页中只使用 Supabase publishable key；管理密码以哈希形式保存在数据库中，不写入网页源码。请不要把数据库密码或 service_role key 放进仓库。
