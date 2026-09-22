@@ -1,11 +1,11 @@
 -- Run this once in Supabase SQL Editor after supabase-schema.sql succeeds.
 create or replace function public.get_class_roster(p_password text)
-returns table(student_id text, name text, gender text)
+returns table(student_id text, name text, gender text, phone text, dorm text)
 language sql
 security definer
 set search_path=public
 as $$
-  select s.student_id, s.name, s.gender
+  select s.student_id, s.name, s.gender, s.phone, s.dorm
   from public.class_students s
   cross join public.class_settings c
   where extensions.crypt(p_password, c.password_hash) = c.password_hash
