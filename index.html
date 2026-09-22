@@ -63,6 +63,15 @@
     @media(max-width:800px){.landing-links{grid-template-columns:1fr 1fr}.landing-link:last-child{grid-column:1/-1}}
     @media(max-width:520px){.landing-links{grid-template-columns:1fr}.landing-link:last-child{grid-column:auto}.landing-link{padding:13px 14px}}
   </style>
+  <style id="glass-theme">
+    .hero,.profile,.landing-link,.announce,.card,.about-card,.modal{background:linear-gradient(135deg,rgba(48,52,99,.46),rgba(19,20,48,.42));border-color:rgba(232,224,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 24px 70px rgba(5,4,24,.22);backdrop-filter:blur(18px) saturate(125%);-webkit-backdrop-filter:blur(18px) saturate(125%)}
+    .hero:before{opacity:.55}.profile:before{opacity:.62}.landing-link:before{opacity:.55}
+    .landing-link-icon,.brand-mark{box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 8px 24px rgba(139,119,255,.25)}
+    .landing-tags span,.button.ghost,.contact,.filters .filter{background:rgba(255,255,255,.055);border-color:rgba(231,224,255,.17);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+    .search input{background:rgba(10,12,31,.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .hero h1,.profile h2,.card h3{letter-spacing:-.6px}
+    @media(max-width:600px){.hero,.profile,.landing-link,.card{backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:blur(12px) saturate(120%)}}
+  </style>
 </head>
 <body class="landing-home">
   <div class="star-field" id="starField" aria-hidden="true"><canvas class="meteor-layer" id="meteorLayer"></canvas></div>
