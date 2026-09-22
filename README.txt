@@ -1,4 +1,4 @@
-落落资源站 · 免费静态版
+﻿落落资源站 · 免费静态版
 
 文件放置：
 - index.html：网站完整页面，直接双击即可预览。
@@ -6,7 +6,7 @@
 - assets/avatar.jpg：网站头像和浏览器标签页图标。
 - class-tool.html：低空2601 班级信息自助工具。
 - supabase-schema.sql：Supabase 数据表、权限函数和班级名单初始化脚本。
-- supabase-roster-update.sql：将已初始化的旧学号更新为正式学号的迁移脚本。
+- supabase-roster-update.sql：将已初始化的旧学号更新为正式学号的迁移脚本。`r`n- supabase-password-update.sql：使用扩展 schema 正确更新班级管理密码。`r`n- supabase-password-update.sql：使用扩展 schema 正确更新班级管理密码。
 
 添加资源：
 1. 用记事本或 VS Code 打开 index.html。
@@ -35,3 +35,5 @@ GitHub 用户名为 llres 时，创建公开仓库 llres.github.io，将本文�
 - 如果已经执行过旧版初始化脚本，请在 SQL Editor 额外执行 `supabase-roster-update.sql`；以后登录使用正式学号。
 
 安全说明：网页中只使用 Supabase publishable key；管理密码以哈希形式保存在数据库中，不写入网页源码。请不要把数据库密码或 service_role key 放进仓库。
+
+
