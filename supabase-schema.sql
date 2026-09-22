@@ -52,14 +52,15 @@ insert into public.class_students (student_id,name,gender) values
 alter table public.class_settings enable row level security;
 alter table public.class_students enable row level security;
 
-create or replace function public.verify_class_access(p_student_id text,p_password text) returns boolean language sql security definer set search_path=public as $$ select exists(select 1 from class_students s,class_settings c where s.student_id=p_student_id and extensions.extensions.crypt(p_password,c.password_hash)=c.password_hash); $$;
-create or replace function public.get_class_students(p_password text) returns table(student_id text,name text,gender text,dorm text,phone text,remark text,updated_at timestamptz) language sql security definer set search_path=public as $$ select s.student_id,s.name,s.gender,s.dorm,s.phone,s.remark,s.updated_at from class_students s,class_settings c where extensions.extensions.crypt(p_password,c.password_hash)=c.password_hash order by s.student_id::int; $$;
-create or replace function public.update_student_info(p_password text,p_student_id text,p_dorm text,p_phone text,p_remark text) returns boolean language plpgsql security definer set search_path=public as $$ begin if not exists(select 1 from class_settings where extensions.extensions.crypt(p_password,password_hash)=password_hash) then return false; end if; update class_students set dorm=coalesce(p_dorm,''),phone=coalesce(p_phone,''),remark=coalesce(p_remark,''),updated_at=now() where student_id=p_student_id; return found; end; $$;
+create or replace function public.verify_class_access(p_student_id text,p_password text) returns boolean language sql security definer set search_path=public as $$ select exists(select 1 from class_students s,class_settings c where s.student_id=p_student_id and extensions.crypt(p_password,c.password_hash)=c.password_hash); $$;
+create or replace function public.get_class_students(p_password text) returns table(student_id text,name text,gender text,dorm text,phone text,remark text,updated_at timestamptz) language sql security definer set search_path=public as $$ select s.student_id,s.name,s.gender,s.dorm,s.phone,s.remark,s.updated_at from class_students s,class_settings c where extensions.crypt(p_password,c.password_hash)=c.password_hash order by s.student_id::int; $$;
+create or replace function public.update_student_info(p_password text,p_student_id text,p_dorm text,p_phone text,p_remark text) returns boolean language plpgsql security definer set search_path=public as $$ begin if not exists(select 1 from class_settings where extensions.crypt(p_password,password_hash)=password_hash) then return false; end if; update class_students set dorm=coalesce(p_dorm,''),phone=coalesce(p_phone,''),remark=coalesce(p_remark,''),updated_at=now() where student_id=p_student_id; return found; end; $$;
 revoke all on table public.class_settings from anon,authenticated;
 revoke all on table public.class_students from anon,authenticated;
 grant execute on function public.verify_class_access(text,text) to anon,authenticated;
 grant execute on function public.get_class_students(text) to anon,authenticated;
 grant execute on function public.update_student_info(text,text,text,text,text) to anon,authenticated;
+
 
 
 
