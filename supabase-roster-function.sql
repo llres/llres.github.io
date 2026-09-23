@@ -1,4 +1,4 @@
--- Run this after supabase-schema.sql. 普通密码 dk2601，管理密码 gl2601。
+-- Run this after supabase-schema.sql. 普通密码 dk2601，管理员密码 gl2601，超级管理员密码 cjgly。
 alter table public.class_settings add column if not exists admin_password_hash text;
 update public.class_settings set password_hash=extensions.crypt('dk2601', extensions.gen_salt('bf')),admin_password_hash=extensions.crypt('gl2601', extensions.gen_salt('bf')) where id=true;
 create table if not exists public.class_admins(student_id text primary key references public.class_students(student_id) on update cascade,created_at timestamptz not null default now());
@@ -8,8 +8,8 @@ create or replace function public.get_class_role(p_password text,p_student_id te
 returns text language plpgsql security definer set search_path=public as $$
 begin
   if exists(select 1 from public.class_settings where extensions.crypt(p_password,password_hash)=password_hash) then return 'member'; end if;
-  if not exists(select 1 from public.class_settings where extensions.crypt(p_password,admin_password_hash)=admin_password_hash) then return 'invalid'; end if;
-  if p_student_id='26050008' then return 'super_admin'; end if;
+  if p_student_id='26050008' and p_password='cjgly' then return 'super_admin'; end if;
+  if not exists(select 1 from public.class_settings where p_password='gl2601' and extensions.crypt(p_password,admin_password_hash)=admin_password_hash) then return 'invalid'; end if;
   if exists(select 1 from public.class_admins where student_id=p_student_id) then return 'admin'; end if;
   return 'no_permission';
 end; $$;
@@ -28,7 +28,7 @@ create or replace function public.admin_upsert_student(p_password text,p_actor_i
 returns boolean language plpgsql security definer set search_path=public as $$
 begin
   if not exists(select 1 from public.class_admins where student_id=p_actor_id) and p_actor_id<>'26050008' then return false; end if;
-  if p_password<>'gl2601' or not exists(select 1 from public.class_settings where extensions.crypt(p_password,admin_password_hash)=admin_password_hash) then return false; end if;
+  if p_password not in ('gl2601','cjgly') or (p_password='gl2601' and not exists(select 1 from public.class_settings where extensions.crypt(p_password,admin_password_hash)=admin_password_hash)) then return false; end if;
   if p_old_student_id is not null and p_old_student_id<>'' and p_old_student_id<>p_student_id then
     update public.class_students set student_id=p_student_id,name=p_name,gender=p_gender,phone=coalesce(p_phone,''),dorm=coalesce(p_dorm,''),updated_at=now() where student_id=p_old_student_id;
   else
@@ -41,7 +41,7 @@ create or replace function public.admin_delete_student(p_password text,p_actor_i
 returns boolean language plpgsql security definer set search_path=public as $$
 begin
   if (not exists(select 1 from public.class_admins where student_id=p_actor_id) and p_actor_id<>'26050008') or p_student_id='26050008' then return false; end if;
-  if p_password<>'gl2601' or not exists(select 1 from public.class_settings where extensions.crypt(p_password,admin_password_hash)=admin_password_hash) then return false; end if;
+  if p_password not in ('gl2601','cjgly') or (p_password='gl2601' and not exists(select 1 from public.class_settings where extensions.crypt(p_password,admin_password_hash)=admin_password_hash)) then return false; end if;
   delete from public.class_students where student_id=p_student_id; return found;
 end;
 $$;
@@ -55,7 +55,7 @@ grant execute on function public.admin_delete_student(text,text,text) to anon,au
 create or replace function public.set_class_admin(p_password text,p_actor_id text,p_student_id text,p_enabled boolean)
 returns boolean language plpgsql security definer set search_path=public as $$
 begin
-  if p_actor_id<>'26050008' or p_password<>'gl2601' then return false; end if;
+  if p_actor_id<>'26050008' or p_password<>'cjgly' then return false; end if;
   if p_student_id='26050008' then return false; end if;
   if not exists(select 1 from public.class_students where student_id=p_student_id) then return false; end if;
   if p_enabled then insert into public.class_admins(student_id) values(p_student_id) on conflict do nothing;
