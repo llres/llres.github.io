@@ -1,9 +1,11 @@
 ﻿create extension if not exists pgcrypto;
 
 create table if not exists public.class_settings (id boolean primary key default true check (id), password_hash text not null);
+alter table public.class_settings add column if not exists admin_password_hash text;
 create table if not exists public.class_students (student_id text primary key, name text not null, gender text not null, dorm text not null default '', phone text not null default '', remark text not null default '', updated_at timestamptz not null default now());
 
 insert into public.class_settings (id,password_hash) values (true, extensions.crypt('请在执行前替换为你的管理密码', extensions.gen_salt('bf'))) on conflict (id) do nothing;
+update public.class_settings set password_hash=extensions.crypt('dk2601', extensions.gen_salt('bf')),admin_password_hash=extensions.crypt('gl2601', extensions.gen_salt('bf')) where id=true;
 
 insert into public.class_students (student_id,name,gender) values
 ('26050001','李亦晨','男'),
@@ -60,7 +62,6 @@ revoke all on table public.class_students from anon,authenticated;
 grant execute on function public.verify_class_access(text,text) to anon,authenticated;
 grant execute on function public.get_class_students(text) to anon,authenticated;
 grant execute on function public.update_student_info(text,text,text,text,text) to anon,authenticated;
-
 
 
 
