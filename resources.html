@@ -8,41 +8,30 @@
 <link rel="stylesheet" href="site-bg.css">
 <title>资源库 · 落落资源站</title>
 <style>
-:root{--bg:#090b1d;--line:rgba(214,202,255,.16);--text:#f8f5ff;--muted:#aaa7c7}
-*{box-sizing:border-box}body{margin:0;min-width:320px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}a{color:inherit}.wrap{width:min(980px,92%);margin:auto}
-.topbar{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800}.brand-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fff2a8,#ff9bd2 45%,#9c8cff);color:#17152a}.brand small{display:block;color:#aaa4ca;font-size:9px;letter-spacing:1.8px;margin-top:2px}.nav{display:flex;gap:8px}.nav a{text-decoration:none;color:#bbb7d6;padding:8px 11px;border-radius:10px;font-size:13px}.nav a:hover{background:#ffffff0b;color:#fff}
-.library-head{padding:48px 0 25px}.eyebrow{display:inline-block;color:#bfefff;font-size:11px;letter-spacing:1px}.library-head h1{font-size:clamp(36px,7vw,58px);margin:12px 0 8px;letter-spacing:-2px}.library-head p{margin:0;color:var(--muted);font-size:14px}
-.path{padding:11px 2px;color:#aaa5c3;font-size:12px}.panel{border:1px solid var(--line);border-radius:18px;background:#11132f99;overflow:hidden}.list{padding:6px}.item{display:grid;grid-template-columns:44px minmax(0,1fr) 90px 24px;gap:12px;align-items:center;padding:13px 12px;border-radius:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.045)}.item:last-child{border-bottom:0}.item:hover{background:#ffffff08}.icon{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:#ffffff08}.folder .icon{background:#5d78d51f}.name{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{color:#77738f;font-size:11px;margin-top:4px}.size{text-align:right;color:#817d98;font-size:11px}.arrow{text-align:center;color:#817d98;font-size:18px}.loading,.empty,.error{padding:55px 20px;text-align:center;color:#85819d}.error{color:#ffb6cb}.error button{margin-top:10px;padding:8px 12px;border:1px solid #ff9dca55;border-radius:9px;background:#ff8fcb12;color:#ffd8e9;cursor:pointer}.footer{padding:28px 0 40px;color:#706c89;font-size:12px;display:flex;justify-content:space-between}
-@media(max-width:600px){.topbar{height:66px}.nav a:first-child{display:none}.library-head{padding:35px 0 18px}.item{grid-template-columns:38px minmax(0,1fr) 22px;padding:11px 8px}.icon{width:38px;height:38px}.size{display:none}}
+:root{--bg:#090b1d;--line:rgba(214,202,255,.16);--text:#f8f5ff}
+*{box-sizing:border-box}body{margin:0;min-width:320px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}a{color:inherit}.wrap{width:min(900px,92%);margin:auto}
+.head{padding:30px 0 12px}.head a{text-decoration:none;color:#aaa7c7;font-size:13px}.head h1{font-size:28px;margin:16px 0 0}.path{padding:10px 2px;color:#aaa5c3;font-size:12px}.path a{text-decoration:none}
+.panel{border:1px solid var(--line);border-radius:14px;background:#11132f99;overflow:hidden}.list{padding:5px}.item{display:grid;grid-template-columns:40px minmax(0,1fr) 80px 20px;gap:10px;align-items:center;padding:11px 10px;border-radius:10px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.045)}.item:last-child{border-bottom:0}.item:hover{background:#ffffff08}.icon{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;font-size:18px;background:#ffffff08}.folder .icon{background:#5d78d51f}.name{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.size{text-align:right;color:#817d98;font-size:11px}.arrow{text-align:center;color:#817d98;font-size:18px}.loading,.empty,.error{padding:40px 20px;text-align:center;color:#85819d}.error{color:#ffb6cb}.error button{margin-top:8px;padding:7px 11px;border:1px solid #ff9dca55;border-radius:8px;background:#ff8fcb12;color:#ffd8e9;cursor:pointer}
+@media(max-width:600px){.item{grid-template-columns:36px minmax(0,1fr) 20px;padding:10px 7px}.icon{width:36px;height:36px}.size{display:none}}
 </style>
 </head>
 <body>
-<header class="wrap topbar">
-<a class="brand" href="index.html"><span class="brand-mark">✦</span><span>落落资源站<small>LLORES · FILE LIBRARY</small></span></a>
-<nav class="nav"><a href="index.html">首站</a><a href="tools.html">工具箱</a><a href="profile.html">关于落</a></nav>
-</header>
 <main class="wrap">
-<section class="library-head">
-  <div>
-    <div class="eyebrow">📁 RESOURCE LIBRARY</div>
-    <h1>资源库</h1>
-    <p>所有资源只按你自己的文件夹整理。点文件夹进入，点文件直接下载。</p>
-  </div>
+<section class="head">
+<a href="index.html">← 返回首页</a>
+<h1>资源库</h1>
 </section>
 <div class="path" id="path"></div>
-<section class="panel">
-  <div class="list" id="list"><div class="loading">正在读取…</div></div>
-</section>
+<section class="panel"><div class="list" id="list"><div class="loading">读取中…</div></div></section>
 </main>
-<footer class="wrap footer"><span>© 2026 <b>落落资源站</b></span><span>文件夹式资源库 · 持续整理</span></footer>
 <script>
 const API="https://api.github.com/repos/llres/llres.github.io/contents/",BRANCH="master";
 const $=id=>document.getElementById(id),esc=v=>String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let current="resources",cache=new Map();
-function size(n){if(!Number.isFinite(n))return "";if(n<1024)return n+" B";if(n<1048576)return (n/1024).toFixed(1)+" KB";if(n<1073741824)return (n/1048576).toFixed(1)+" MB";return (n/1073741824).toFixed(2)+" GB"}
-function icon(x){if(x.type==="dir")return "📁";let e=(x.name.split(".").pop()||"").toLowerCase();if(["zip","rar","7z","tar","gz"].includes(e))return "🗜️";if(["pdf","doc","docx","xls","xlsx","ppt","pptx","txt"].includes(e))return "📄";if(["jpg","jpeg","png","gif","webp"].includes(e))return "🖼️";if(["mp4","mkv","mov","avi","webm"].includes(e))return "🎬";if(["mp3","wav","flac","m4a"].includes(e))return "🎵";if(["exe","msi","apk","dmg"].includes(e))return "⚙️";return "📦"}
+function size(n){if(!Number.isFinite(n))return "";if(n<1024)return n+" B";if(n<1048576)return(n/1024).toFixed(1)+" KB";if(n<1073741824)return(n/1048576).toFixed(1)+" MB";return(n/1073741824).toFixed(2)+" GB"}
+function icon(x){if(x.type==="dir")return"📁";let e=(x.name.split(".").pop()||"").toLowerCase();if(["zip","rar","7z","tar","gz"].includes(e))return"🗜️";if(["pdf","doc","docx","xls","xlsx","ppt","pptx","txt"].includes(e))return"📄";if(["jpg","jpeg","png","gif","webp"].includes(e))return"🖼️";if(["mp4","mkv","mov","avi","webm"].includes(e))return"🎬";if(["mp3","wav","flac","m4a"].includes(e))return"🎵";if(["exe","msi","apk","dmg"].includes(e))return"⚙️";return"📦"}
 function crumbs(){const p=current.split("/").filter(Boolean);let html='<a href="#" data-path="resources">资源库</a>';let acc="resources";for(const x of p.slice(1)){acc+="/"+x;html+=' <span> / </span><a href="#" data-path="'+esc(acc)+'">'+esc(x)+"</a>"}$("path").innerHTML=html}
-async function load(path){current=path;crumbs();$("list").innerHTML='<div class="loading">正在打开文件夹…</div>';try{let data=cache.get(path);if(!data){const r=await fetch(API+path+"?ref="+BRANCH,{headers:{Accept:"application/vnd.github+json"}});if(!r.ok)throw Error(r.status);data=await r.json();cache.set(path,data)}data.sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name,"zh-CN"):a.type==="dir"?-1:1));if(!data.length){$("list").innerHTML='<div class="empty">这个文件夹是空的。</div>';return}$("list").innerHTML=data.map(x=>{const dir=x.type==="dir";return '<a class="item '+(dir?"folder":"file")+'" '+(dir?'href="#" data-path="'+esc(x.path)+'"':'href="'+esc(x.download_url||x.html_url)+'" download target="_blank" rel="noopener"')+'><span class="icon">'+icon(x)+'</span><span><div class="name">'+esc(x.name)+'</div><div class="meta">'+(dir?"文件夹":"文件")+'</div></span><span class="size">'+(dir?"":size(x.size))+'</span><span class="arrow">'+(dir?"›":"↓")+"</span></a>"}).join("")}catch(e){$("list").innerHTML='<div class="error">资源目录暂时无法读取。<br><button id="retry">重新打开</button></div>';$("retry").onclick=()=>{cache.delete(path);load(path)}}}
+async function load(path){current=path;crumbs();$("list").innerHTML='<div class="loading">读取中…</div>';try{let data=cache.get(path);if(!data){const r=await fetch(API+path+"?ref="+BRANCH,{headers:{Accept:"application/vnd.github+json"}});if(!r.ok)throw Error(r.status);data=await r.json();cache.set(path,data)}data.sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name,"zh-CN"):a.type==="dir"?-1:1));if(!data.length){$("list").innerHTML='<div class="empty">空文件夹</div>';return}$("list").innerHTML=data.map(x=>{const dir=x.type==="dir";return'<a class="item '+(dir?"folder":"file")+'" '+(dir?'href="#" data-path="'+esc(x.path)+'"':'href="'+esc(x.download_url||x.html_url)+'" download target="_blank" rel="noopener"')+'><span class="icon">'+icon(x)+'</span><span class="name">'+esc(x.name)+'</span><span class="size">'+(dir?"":size(x.size))+'</span><span class="arrow">'+(dir?"›":"↓")+"</span></a>"}).join("")}catch(e){$("list").innerHTML='<div class="error">读取失败<br><button id="retry">重试</button></div>';$("retry").onclick=()=>{cache.delete(path);load(path)}}}
 $("path").addEventListener("click",e=>{const a=e.target.closest("[data-path]");if(a){e.preventDefault();load(a.dataset.path)}});load(current);
 </script>
 </body>
