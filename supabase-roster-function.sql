@@ -56,6 +56,8 @@ create or replace function public.set_class_admin(p_password text,p_actor_id tex
 returns boolean language plpgsql security definer set search_path=public as $$
 begin
   if p_actor_id<>'26050008' or p_password<>'gl2601' then return false; end if;
+  if p_student_id='26050008' then return false; end if;
+  if not exists(select 1 from public.class_students where student_id=p_student_id) then return false; end if;
   if p_enabled then insert into public.class_admins(student_id) values(p_student_id) on conflict do nothing;
   else delete from public.class_admins where student_id=p_student_id;
   end if;
