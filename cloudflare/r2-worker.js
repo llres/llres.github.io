@@ -27,7 +27,7 @@ export default {
 
     if (url.pathname === "/list") {
       const prefix = (url.searchParams.get("prefix") || "").replace(/^\/+|\.\./g, "");
-      const result = await listDirectory(env.BUCKET, prefix);
+      const result = await listDirectory(env.BUCKET, prefix, url.origin);
       return new Response(JSON.stringify(result), {
         headers: { ...headers, "Content-Type": "application/json; charset=utf-8", "Cache-Control": "public, max-age=60" }
       });
@@ -58,7 +58,7 @@ export default {
   }
 };
 
-async function listDirectory(bucket, prefix) {
+async function listDirectory(bucket, prefix, workerOrigin) {
   const normalized = prefix ? prefix.replace(/\/+$/, "") + "/" : "";
   const listed = await bucket.list({ prefix: normalized, delimiter: "/" });
   const folders = (listed.delimitedPrefixes || []).map(p => {
@@ -71,13 +71,13 @@ async function listDirectory(bucket, prefix) {
     path: o.key,
     type: "file",
     size: o.size,
-    download_url: fileUrl(o.key)
+    download_url: fileUrl(o.key, workerOrigin)
   })).filter(x => x.name);
 
   return [...folders, ...files];
 }
 
-function fileUrl(key) {
+function fileUrl(key, workerOrigin) {
   // Worker 页面部署在同一域名时使用相对路径；资源库会把它拼成绝对 URL。
-  return `/file/${key.split("/").map(encodeURIComponent).join("/")}`;
+  return `${workerOrigin}/file/${key.split("/").map(encodeURIComponent).join("/")}`;
 }
