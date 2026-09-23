@@ -42,7 +42,7 @@
 const R2_API="";
 const GITHUB_API="https://api.github.com/repos/llres/llres.github.io/contents/",BRANCH="master";
 const $=id=>document.getElementById(id),esc=v=>String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let current="";cache=new Map(),items=[];
+let current="",cache=new Map(),items=[];
 const imageExt=["jpg","jpeg","png","gif","webp","svg","bmp","avif"],videoExt=["mp4","mkv","mov","avi","webm","m4v"],audioExt=["mp3","wav","flac","m4a","aac","ogg"],pdfExt=["pdf"],archiveExt=["zip","rar","7z","tar","gz","bz2"];
 function ext(x){return(x.name.split(".").pop()||"").toLowerCase()}
 function size(n){if(!Number.isFinite(n))return"";if(n<1024)return n+" B";if(n<1048576)return(n/1024).toFixed(1)+" KB";if(n<1073741824)return(n/1048576).toFixed(1)+" MB";return(n/1073741824).toFixed(2)+" GB"}
